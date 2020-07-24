@@ -1,11 +1,8 @@
-function doNothing () {
-	
-}
 function detectReactor () {
     if (_.tileKindAt(TileDirection.Center, myTiles.tile12) && (tiles.tileIs(tiles.locationInDirection(location, CollisionDirection.Bottom), myTiles.tile12) && (tiles.tileIs(tiles.locationInDirection(location, CollisionDirection.Top), myTiles.tile12) && (tiles.tileIs(tiles.locationInDirection(location, CollisionDirection.Right), myTiles.tile12) && tiles.tileIs(tiles.locationInDirection(location, CollisionDirection.Left), myTiles.tile12))))) {
-    	
+        sayHello()
     } else {
-        doNothing()
+    	
     }
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -13,10 +10,20 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         buildReactor()
     }
 })
+function sayHello () {
+    if (true) {
+    	
+    } else {
+    	
+    }
+}
 function buildReactor () {
     tiles.setTileAt(tiles.locationOfSprite(_), myTiles.tile12)
     tiles.setTileAt(buildLocation, myTiles.tile12)
 }
+let MathewY = 0
+let MathewX = 0
+let Mathewlocation: tiles.Location = null
 let buildLocation: tiles.Location = null
 let canBuild = false
 let location: tiles.Location = null
@@ -106,9 +113,9 @@ tiles.setTilemap(tiles.createTilemap(hex`400040000101010101010101010101010101010
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-    `, [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile11,myTiles.tile12], TileScale.Sixteen))
+    `, [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile11,myTiles.tile12,myTiles.transparency16,myTiles.tile10], TileScale.Sixteen))
 tiles.placeOnTile(_, tiles.getTileLocation(6, 6))
-_.setFlag(SpriteFlag.ShowPhysics, true)
+let mathewTile = tiles.getTileLocation(0, 0)
 game.onUpdate(function () {
     if (controller.up.isPressed()) {
         _.setImage(img`
@@ -192,6 +199,7 @@ game.onUpdate(function () {
     }
 })
 game.onUpdate(function () {
+    Mathewlocation = tiles.locationOfSprite(_)
     location = tiles.locationOfSprite(_)
     if (_.tileKindAt(TileDirection.Center, myTiles.tile1)) {
         canBuild = true
@@ -203,4 +211,14 @@ game.onUpdate(function () {
 })
 forever(function () {
 	
+})
+forever(function () {
+    MathewX = Math.trunc(_.x)
+    MathewY = Math.trunc(_.y)
+    mathewTile = tiles.getTileLocation(MathewX + 1, MathewY - 1)
+    _.say("" + (MathewX + 1) + ", " + (MathewY - 1))
+    _.setFlag(SpriteFlag.ShowPhysics, true)
+    if (tiles.tileIs(tiles.getTileLocation(MathewX + 1, MathewY - 1), myTiles.tile12)) {
+        _.say("Eureka")
+    }
 })
